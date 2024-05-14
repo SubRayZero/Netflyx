@@ -28,19 +28,31 @@ export default function ReleaseDate() {
     return (
         <div className='home_size_carousel'>
             <div className='home_carousel'>
+                <h3>Upcoming movies</h3>
                 {ReleaseDateMovies ? (
                     <Carousel>
-                        {ReleaseDateMovies.map(movie => (
-                            <Carousel.Item key={movie.id}>
-                                <Card style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" className="d-block w-100 popular_image"
-                                        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                                        alt={movie.title} />
-                                    <Card.Body>
-                                        <Card.Title>{movie.title}</Card.Title>
-                                        <Button variant="primary">Go somewhere</Button>
-                                    </Card.Body>
-                                </Card>
+                        {ReleaseDateMovies.reduce((chunks, movie, index) => {
+                            if (index % 4 === 0) {
+                                chunks.push([]);
+                            }
+                            chunks[chunks.length - 1].push(movie);
+                            return chunks;
+                        }, []).map((chunk, chunkIndex) => (
+                            <Carousel.Item key={chunkIndex}>
+                                <div className="row justify-content-center">
+                                    {chunk.map(movie => (
+                                        <div className="col-lg-3 col-md-6 mb-4" key={movie.id}>
+                                            <Card style={{ width: '100%' }} className='heigh_card'>
+                                                <Card.Img variant="top" className="popular_image"
+                                                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                                                    alt={movie.title} />
+                                                <Card.Body>
+                                                    <Card.Title>{movie.title}</Card.Title>
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+                                    ))}
+                                </div>
                             </Carousel.Item>
                         ))}
                     </Carousel>

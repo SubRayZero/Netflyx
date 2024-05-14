@@ -1,37 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
+import "./popularMovies.css";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import "./movies.css";
 
-export default function ListMovies() {
-    const [popularMovies, setPopularMovies] = useState(null);
+export default function TopRated() {
+    const [topRateMovies, settopRateMovies] = useState([]);
 
     useEffect(() => {
-        const fetchPopularMovies = async () => {
+        const fetchtopRateMovies = async () => {
             try {
-                const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', {
+                const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', {
                     headers: {
                         accept: 'application/json',
                         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzI1MDI1ZTU5MjhhYjg5MGFmOWVkZTQyMjZiMjhkMSIsInN1YiI6IjY2NDFmZjQ3NDc0NmU5OGE4ZGZiNWJiZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.UZkv8hTpx5fXs8Acln1k6I9w5RDTGjft5uZNED3OgvM'
                     }
                 });
                 const jsonData = await response.json();
-                setPopularMovies(jsonData.results);
+                settopRateMovies(jsonData.results);
             } catch (error) {
-                console.error('Error fetching popular movies:', error);
+                console.error('Error fetching upcoming movies:', error);
             }
         };
-        fetchPopularMovies();
+        fetchtopRateMovies();
     }, []);
 
     return (
         <div className='home_size_carousel'>
             <div className='home_carousel'>
-            <h3>Most popular</h3>
-                {popularMovies ? (
+                <h3>Top Rated</h3>
+                {topRateMovies ? (
                     <Carousel>
-                        {popularMovies.reduce((chunks, movie, index) => {
+                        {topRateMovies.reduce((chunks, movie, index) => {
                             if (index % 4 === 0) {
                                 chunks.push([]);
                             }
@@ -61,5 +61,11 @@ export default function ListMovies() {
                 )}
             </div>
         </div>
+
+
+
     );
 }
+
+
+

@@ -47,17 +47,30 @@ export default function ListMovies() {
   return (
     <div className='home_size_carousel'>
       <div className='home_carousel'>
+      <h3>List of movies</h3>
         {movies ? (
           <Carousel>
-            {movies.map(movie => (
-              <Carousel.Item key={movie.id}>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src={movie.images && movie.images.backdrops && movie.images.backdrops.length > 0 && `https://image.tmdb.org/t/p/w500${movie.images.backdrops[0].file_path}`} alt={movie.title} />
-                  <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
+            {movies.reduce((chunks, movie, index) => {
+              if (index % 4 === 0) {
+                chunks.push([]);
+              }
+              chunks[chunks.length - 1].push(movie);
+              return chunks;
+            }, []).map((chunk, chunkIndex) => (
+              <Carousel.Item key={chunkIndex}>
+                <div className="row justify-content-center">
+                  {chunk.map(movie => (
+                    <div className="col-lg-3 col-md-6 mb-4" key={movie.id}>
+                      <Card style={{ width: '100%' }} className='heigh_card_list'>
+                        <Card.Img variant="top" className="popular_image"
+                          src={movie.images && movie.images.backdrops && movie.images.backdrops.length > 0 && `https://image.tmdb.org/t/p/w500${movie.images.backdrops[0].file_path}`} alt={movie.title} />
+                        <Card.Body>
+                          <Card.Title>{movie.title}</Card.Title>
+                        </Card.Body>
+                      </Card>
+                    </div>
+                  ))}
+                </div>
               </Carousel.Item>
             ))}
           </Carousel>
@@ -68,3 +81,6 @@ export default function ListMovies() {
     </div>
   );
 }
+
+
+
