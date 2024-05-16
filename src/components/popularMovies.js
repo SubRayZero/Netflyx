@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
+import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import "./movies.css";
@@ -28,7 +29,7 @@ export default function ListMovies() {
     return (
         <div className='home_size_carousel'>
             <div className='home_carousel'>
-            <h3>Most popular</h3>
+                <h3>Most popular</h3>
                 {popularMovies ? (
                     <Carousel>
                         {popularMovies.reduce((chunks, movie, index) => {
@@ -47,7 +48,8 @@ export default function ListMovies() {
                                                     src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                                                     alt={movie.title} />
                                                 <Card.Body>
-                                                    <Card.Title>{movie.title}</Card.Title>
+                                                    <Link href={"/movies/" + movie.title}>
+                                                        <Card.Title>{movie.title}</Card.Title></Link>
                                                 </Card.Body>
                                             </Card>
                                         </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
+import Link from 'next/link';
 import "./popularMovies.css";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -47,7 +48,8 @@ export default function TopRated() {
                                                     src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                                                     alt={movie.title} />
                                                 <Card.Body>
-                                                    <Card.Title>{movie.title}</Card.Title>
+                                                    <Link href={"/movies/" + movie.title}>
+                                                        <Card.Title>{movie.title}</Card.Title></Link>
                                                 </Card.Body>
                                             </Card>
                                         </div>

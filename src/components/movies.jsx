@@ -1,11 +1,16 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Carousel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import "./movies.css";
 
-export default function ListMovies() {
+export default function ListMovies(props) {
+  console.log(props);
   const [movies, setMovies] = useState(null);
+
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -47,7 +52,7 @@ export default function ListMovies() {
   return (
     <div className='home_size_carousel'>
       <div className='home_carousel'>
-      <h3>List of movies</h3>
+        <h3>List of movies</h3>
         {movies ? (
           <Carousel>
             {movies.reduce((chunks, movie, index) => {
@@ -65,8 +70,11 @@ export default function ListMovies() {
                         <Card.Img variant="top" className="popular_image"
                           src={movie.images && movie.images.backdrops && movie.images.backdrops.length > 0 && `https://image.tmdb.org/t/p/w500${movie.images.backdrops[0].file_path}`} alt={movie.title} />
                         <Card.Body>
-                          <Card.Title>{movie.title}</Card.Title>
+                          <Link href={"/movies/" + movie.title}>
+                            <Card.Title>{movie.title}</Card.Title>
+                          </Link>
                         </Card.Body>
+
                       </Card>
                     </div>
                   ))}
