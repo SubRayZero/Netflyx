@@ -1,16 +1,14 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { Carousel } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import "./movies.css";
+import Link from 'next/link';
 
 export default function ListMovies(props) {
   console.log(props);
   const [movies, setMovies] = useState(null);
-
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -66,15 +64,14 @@ export default function ListMovies(props) {
                 <div className="row justify-content-center">
                   {chunk.map(movie => (
                     <div className="col-lg-3 col-md-6 mb-4" key={movie.id}>
-                      <Card style={{ width: '100%' }} className='heigh_card_list'>
+                      <Card style={{ width: '100%' }} className='heigh_card_list' onClick={() => setSelectedMovie(movie)}>
                         <Card.Img variant="top" className="popular_image"
                           src={movie.images && movie.images.backdrops && movie.images.backdrops.length > 0 && `https://image.tmdb.org/t/p/w500${movie.images.backdrops[0].file_path}`} alt={movie.title} />
                         <Card.Body>
-                          <Link href={"/movies/" + movie.title}>
+                          <Link href={"/movies/" + movie.id}>
                             <Card.Title>{movie.title}</Card.Title>
                           </Link>
                         </Card.Body>
-
                       </Card>
                     </div>
                   ))}
@@ -89,6 +86,3 @@ export default function ListMovies(props) {
     </div>
   );
 }
-
-
-
