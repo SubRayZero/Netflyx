@@ -1,20 +1,5 @@
-.hero_banner{
-    height: 500px;
-    background-color: lightblue;
-
-    display: flex;
-    
-
-}
-
-.hero_texte{
-    background-color: #202020;
-    width: 500px;
-    height: 100%;
-}
 
 .hero_banner_image{
-    position: relative;
     height: 500px;
-    width: 1030px;
+    width: 100%;
 }

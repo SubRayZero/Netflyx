@@ -10,7 +10,6 @@ import TopRated from "@/components/topRate";
 export default function Home() {
   return (
     <>
-
       <Navbars />
       <HeroBanner />
       <div className="container_home">

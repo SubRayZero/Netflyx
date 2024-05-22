@@ -25,9 +25,7 @@ export default function HeroBanner() {
     }, []);
 
     return (
-        <div className='hero_banner'>
-          <div className='hero_texte'></div>  
-            <div className='hero_container_image'>
+        <>
                 {firstPopularMovie && (
                     <div>
                         <img
@@ -38,7 +36,7 @@ export default function HeroBanner() {
                     </div>
 
                 )}
-            </div>
-        </div>
+           
+        </>
     );
 }

@@ -29,37 +29,27 @@ export default function TopRated() {
     return (
         <div className='home_size_carousel'>
             <div className='home_carousel'>
-                <h3>Top Rated</h3>
+                <h3>List of movies</h3>
                 {topRateMovies ? (
                     <Carousel>
-                        {topRateMovies.reduce((chunks, movie, index) => {
-                            if (index % 4 === 0) {
-                                chunks.push([]);
-                            }
-                            chunks[chunks.length - 1].push(movie);
-                            return chunks;
-                        }, []).map((chunk, chunkIndex) => (
-                            <Carousel.Item key={chunkIndex}>
-                                <div className="row justify-content-center">
-                                    {chunk.map(movie => (
-                                        <div className="col-lg-3 col-md-6 mb-4" key={movie.id}>
-                                            <Card style={{ width: '100%' }} className='heigh_card'>
-                                                <Card.Img variant="top" className="popular_image"
-                                                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                                                    alt={movie.title} />
-                                                <Card.Body>
-                                                    <Link href={"/movies/" + movie.title}>
-                                                        <Card.Title>{movie.title}</Card.Title></Link>
-                                                </Card.Body>
-                                            </Card>
-                                        </div>
-                                    ))}
-                                </div>
+                        {topRateMovies.map(movie => (
+                            <Carousel.Item key={movie.id}>
+                                <Link href={"/movies/" + movie.id}>
+                                    <img
+                                        className="d-block w-100 popular_image"
+                                        src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                                        alt={movie.title}
+                                    />
+                                    <Carousel.Caption>
+                                        <h3>{movie.title}</h3>
+                                        <p>Release Date: {movie.release_date}</p>
+                                    </Carousel.Caption>
+                                </Link>
                             </Carousel.Item>
                         ))}
                     </Carousel>
                 ) : (
-                    <p>Chargement...</p>
+                    <p>Loading...</p>
                 )}
             </div>
         </div>

@@ -53,36 +53,27 @@ export default function ListMovies(props) {
         <h3>List of movies</h3>
         {movies ? (
           <Carousel>
-            {movies.reduce((chunks, movie, index) => {
-              if (index % 4 === 0) {
-                chunks.push([]);
-              }
-              chunks[chunks.length - 1].push(movie);
-              return chunks;
-            }, []).map((chunk, chunkIndex) => (
-              <Carousel.Item key={chunkIndex}>
-                <div className="row justify-content-center">
-                  {chunk.map(movie => (
-                    <div className="col-lg-3 col-md-6 mb-4" key={movie.id}>
-                      <Card style={{ width: '100%' }} className='heigh_card_list' onClick={() => setSelectedMovie(movie)}>
-                        <Card.Img variant="top" className="popular_image"
-                          src={movie.images && movie.images.backdrops && movie.images.backdrops.length > 0 && `https://image.tmdb.org/t/p/w500${movie.images.backdrops[0].file_path}`} alt={movie.title} />
-                        <Card.Body>
-                          <Link href={"/movies/" + movie.id}>
-                            <Card.Title>{movie.title}</Card.Title>
-                          </Link>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  ))}
-                </div>
+            {movies.map(movie => (
+              <Carousel.Item key={movie.id}>
+                <Link href={"/movies/" + movie.id}>
+                  <img
+                    className="d-block w-100 popular_image"
+                    src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                    alt={movie.title}
+                  />
+                  <Carousel.Caption>
+                    <h3>{movie.title}</h3>
+                    <p>Release Date: {movie.release_date}</p>
+                  </Carousel.Caption>
+                </Link>
               </Carousel.Item>
             ))}
           </Carousel>
         ) : (
-          <p>Chargement...</p>
+          <p>Loading...</p>
         )}
       </div>
     </div>
+
   );
 }
