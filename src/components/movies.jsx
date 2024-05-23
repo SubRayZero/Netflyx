@@ -1,13 +1,9 @@
 "use client"
-
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-import "./movies.css";
 import Link from 'next/link';
 
-export default function ListMovies(props) {
-  console.log(props);
+export default function ListMovies({searchQuery = '' }) {
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
@@ -47,13 +43,17 @@ export default function ListMovies(props) {
     fetchMovies();
   }, []);
 
+  const filteredMovies = movies?.filter(movie =>
+    movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className='home_size_carousel'>
       <div className='home_carousel'>
         <h3>List of movies</h3>
-        {movies ? (
+        {filteredMovies ? (
           <Carousel>
-            {movies.map(movie => (
+            {filteredMovies.map(movie => (
               <Carousel.Item key={movie.id}>
                 <Link href={"/movies/" + movie.id}>
                   <img
@@ -74,6 +74,5 @@ export default function ListMovies(props) {
         )}
       </div>
     </div>
-
   );
 }

@@ -29,7 +29,7 @@ export default function TopRated() {
     return (
         <div className='home_size_carousel'>
             <div className='home_carousel'>
-                <h3>List of movies</h3>
+                <h3>Top Rated</h3>
                 {topRateMovies ? (
                     <Carousel>
                         {topRateMovies.map(movie => (

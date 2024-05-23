@@ -29,7 +29,7 @@ export default function ReleaseDate() {
     return (
         <div className='home_size_carousel'>
         <div className='home_carousel'>
-            <h3>List of movies</h3>
+            <h3>Release Date</h3>
             {ReleaseDateMovies ? (
                 <Carousel>
                     {ReleaseDateMovies.map(movie => (

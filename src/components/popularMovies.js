@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import "./movies.css";
 
-export default function ListMovies() {
+export default function PopularMovies() {
     const [popularMovies, setPopularMovies] = useState(null);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function ListMovies() {
     return (
         <div className='home_size_carousel'>
             <div className='home_carousel'>
-                <h3>List of movies</h3>
+                <h3>Popular Movies</h3>
                 {popularMovies ? (
                     <Carousel>
                         {popularMovies.map(movie => (
