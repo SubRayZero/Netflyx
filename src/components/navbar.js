@@ -17,7 +17,6 @@ export default function Navbars({ onSearch }) {
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
-                <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -25,7 +24,7 @@ export default function Navbars({ onSearch }) {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Home</Nav.Link>
+                        <Nav.Link href="../">Home</Nav.Link>
                         <Nav.Link href="#action2">Category</Nav.Link>
                     </Nav>
                     <Form className="d-flex" onSubmit={handleSearchSubmit}>

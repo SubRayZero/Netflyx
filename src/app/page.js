@@ -2,9 +2,6 @@
 
 import React, { useState } from 'react';
 
-
-
-
 import HeroBanner from '@/components/heroBanner';
 import ReleaseDate from '@/components/releaseDate';
 import Navbars from '@/components/navbar';
@@ -39,7 +36,7 @@ export default function Home() {
       console.error('Erreur lors de la recherche :', error);
     }
   };
-  
+
 return  (
     <>
       <Navbars onSearch={handleSearch} />

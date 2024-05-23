@@ -2,7 +2,7 @@
 
 import Navbars from '@/components/navbar';
 import React, { useState, useEffect } from 'react';
-
+import { Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 
 export default function MoviesDetails(props) {
@@ -31,29 +31,33 @@ export default function MoviesDetails(props) {
     return (
 
         <>
-            <Navbars />
-            <div className="container mt-5">
-                {movieDetails ? (
-                    <div className="card mx-auto" style={{ width: '50rem' }}>
-                        <div className="row g-0">
-                            <div className="col-md-4">
-                                {movieDetails.poster_path && (
-                                    <Card.Img src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} />
-                                )}
-                            </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <h5 className="card-title">{movieDetails.title}</h5>
-                                    <h6 className="card-subtitle mb-2 text-muted">Release Date: {movieDetails.release_date}</h6>
-                                    <p className="card-text">{movieDetails.overview}</p>
+            <Navbars>
+            </Navbars>
+            <Container>
+                <div className="mt-5">
+                    {movieDetails ? (
+                        <div className="card mx-auto" style={{ maxWidth: '50rem' }}>
+                            <div className="row g-0">
+                                <div className="col-md-4">
+                                    {movieDetails.poster_path && (
+                                        <Card.Img src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt={movieDetails.title} />
+                                    )}
+                                </div>
+                                <div className="col-md-8">
+                                    <div className="card-body">
+                                        <h5 className="card-title">{movieDetails.title}</h5>
+                                        <h6 className="card-subtitle mb-2 text-muted">Release Date: {movieDetails.release_date}</h6>
+                                        <p className="card-text">{movieDetails.overview}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ) : (
-                    <p>Loading...</p>
-                )}
-            </div>
+                    ) : (
+                        <p>Loading...</p>
+                    )}
+                </div>
+            </Container>
+
         </>
     );
 }
