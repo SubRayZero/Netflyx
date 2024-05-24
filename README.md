@@ -1,3 +1,14 @@
+# Netflyx
+
+👉 Pour faire ce brief, nous étions seul et nous avions 2 semaines. Le but était de créer un site de streaming en JS. Nous devions utiliser plusieurs API différentes du site The Movie DB. Nous étions libre sur le choix de notre design et de nos références. Il devait être codé avec le framework React Next.js et en format SPA.
+
+Pour ce brief, nous n'étions pas obligé d'avoir une maquette. 
+
+## 🔗 Links
+
+[![github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/SubRayZero/netflyx)
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
