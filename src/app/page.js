@@ -71,7 +71,6 @@ const Home = () => {
         <>
           {selectedGenre && (
             <Container>
-                <h1>Category : {selectedGenre}</h1>
               <Row>
                 {movies.map((movie) => (
                   <Col key={movie.id} md={4} lg={3} className="mb-4">
